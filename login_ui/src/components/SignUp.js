@@ -7,6 +7,7 @@ import axios from 'axios';
 
 
 
+
 class SignUp extends Component{
     
     constructor(props){
@@ -59,10 +60,10 @@ class SignUp extends Component{
         event.preventDefault()
         const {username, email, password} = this.state
         let{avatar} = this.state
-        const{newUser, user} = this.props
+        const{createUser, user} = this.props
         const imgPath = await this.handleAvatarUpload(avatar)
         avatar = imgPath;
-        await newUser({username,email,password,avatar})
+        await createUser({username,email,password,avatar})
         if(user.isLogin ===true){
             const {history} = this.props;
             history.push('/')
@@ -125,7 +126,7 @@ const mapStateToProps = state =>({
 })
 
 const mapDispatchToProps = dispatch =>({
-    newUser: user => dispatch(createUser(user)),
+    createUser: newUser => dispatch(createUser(newUser)),
 })
 
 SignUp.propTypes = {
